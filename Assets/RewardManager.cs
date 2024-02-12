@@ -24,7 +24,11 @@ public class RewardManager : MonoBehaviour
     }
 
     public InventoryManager inventoryManager;
-    public Stack<Reward> rewardQueue = new Stack<Reward>();
+    public Stack<Reward> rewardStack = new Stack<Reward>();
+
+    public Image emptyImageObject;
+    public Transform itemDisplayContainer;
+    public Stack<GameObject> itemStack = new Stack<GameObject>();
     public Button claimRewardButton;
 
 
@@ -33,21 +37,43 @@ public class RewardManager : MonoBehaviour
     {
         claimRewardButton.onClick.AddListener(() =>
         {
-            ClaimReward(rewardQueue.Peek());
+            ClaimReward(rewardStack.Peek());
         });
     }
     private void Update()
     {
         if (claimRewardButton != null)
         {
-            claimRewardButton.interactable = rewardQueue.Count > 0;
+            claimRewardButton.interactable = rewardStack.Count > 0;
         }
     }
     public void GetReward()
     {
-        rewardQueue.Push(GenerateReward());
-        Debug.Log("Your reward is " + rewardQueue.Peek().rewardItem.itemData.itemName);
+        rewardStack.Push(GenerateReward());
+        DisplayItemProperties(rewardStack.Peek());
+        Debug.Log("Your reward is " + rewardStack.Peek().rewardItem.itemData.itemName);
     }
+
+    public void DisplayItemProperties(Reward reward)
+    {
+        //Always show the peek item of the stack
+        Image img = Image.Instantiate(emptyImageObject, itemDisplayContainer);
+        img.sprite = reward.rewardItem.itemData.itemSprite;
+        img.gameObject.SetActive(false);
+        itemStack.Push(img.gameObject);
+        CheckItemOnStack();
+    }
+    public void CheckItemOnStack()
+    {
+        foreach (var item in itemStack)
+        {
+            if (itemStack.Peek() == item)
+                item.gameObject.SetActive(true);
+            else
+                item.gameObject.SetActive(false);
+        }
+    }
+
     public Reward GenerateReward()
     {
         Reward r = new Reward(inventoryManager.GetRandomItem());
@@ -63,8 +89,13 @@ public class RewardManager : MonoBehaviour
         {
             inventoryManager.inventory.AddItem(r.rewardItem);
             r.isClaimed = true;
+
+            Destroy(itemStack.Peek());
+            itemStack.Pop();
+            CheckItemOnStack();
+
             Debug.Log("You claimed " + r.rewardItem.itemData.itemName);
-            rewardQueue.Pop();
+            rewardStack.Pop();
         }
     }
 

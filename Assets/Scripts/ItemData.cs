@@ -15,6 +15,7 @@ public class ItemData : ScriptableObject
     }
 
     public ItemType type;
+    public Sprite itemSprite;
     public string itemName;
     [TextArea]
     public string description;
