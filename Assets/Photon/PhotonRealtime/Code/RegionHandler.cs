@@ -31,6 +31,8 @@ namespace Photon.Realtime
 #if SUPPORTED_UNITY
     using UnityEngine;
     using Debug = UnityEngine.Debug;
+    using System.Threading;
+    using System.Net;
 #endif
 #if SUPPORTED_UNITY || NETFX_CORE
 #endif

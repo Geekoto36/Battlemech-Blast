@@ -27,6 +27,15 @@ public interface IExplodeable
 
 }
 
+public interface IThrowable
+{
+    public int CurrentAmmo { get; }
+    public float Damage {  get; }
+    public float ElapseDuration {  get; }
+    public float Speed {  get; }
+    public float TimeToExecute {  get; }
+
+}
 public interface IFireable
 {
     

@@ -15,7 +15,8 @@ public class WeaponUnit : MonoBehaviour
         Rocket,
         Riffle,
         Sward,
-        Explosive
+        Explosive,
+        Throwable
     }
 
     public GameObject bulletPrefab;
