@@ -12,7 +12,7 @@ public abstract class Weapon : MonoBehaviour
 
 public interface IWeapon
 {
-    public void Shoot();
+    public void Execute();
     public void Reload();
     public void IncreaseAmmo();
 }
@@ -30,16 +30,19 @@ public interface IExplodeable
 public interface IThrowable
 {
     public int CurrentAmmo { get; }
-    public float Damage {  get; }
-    public float ElapseDuration {  get; }
-    public float Speed {  get; }
-    public float TimeToExecute {  get; }
+    public float Damage { get; }
+    public float DamageInterval { get; }
+    public float ElapseDuration { get; }
+    public float ShootForce { get; }
+    public float TorqueSpeed { get; }
+    public float TimeToExecute { get; }
+    public float TimeToDie { get; }
 
 }
 public interface IFireable
 {
-    
-    public int CurrentAmmo { get;}
+
+    public int CurrentAmmo { get; }
     public float Damage { get; }
     public float Accuracy { get; }
     public float Speed { get; }

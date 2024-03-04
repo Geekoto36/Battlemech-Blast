@@ -54,7 +54,7 @@ public class LaserGun : Fire, IWeapon, IFireable
         //Debug.Log("Laser gun firing");
     }
 
-    public void Shoot()
+    public void Execute()
     {
         if (attackController.IsRiffleShooting())
         {

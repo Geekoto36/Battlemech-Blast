@@ -87,7 +87,7 @@ public class BombPlanter : Weapon, IWeapon
         attackController.bombPreviewGO.GetComponent<SpriteRenderer>().enabled = true;
 
     }
-    public void Shoot()
+    public void Execute()
     {
         Debug.Log("Checking Shoot method");
         CheckPlantTimeChange();

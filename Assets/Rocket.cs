@@ -113,7 +113,7 @@ public class Rocket : Fire, IWeapon, IFireable, IExplodeable
         Explode();
     }
 
-    public void Shoot()
+    public void Execute()
     {
 
         if (attackController.IsRiffleShooting())

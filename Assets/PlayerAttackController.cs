@@ -93,7 +93,7 @@ public class PlayerAttackController : MonoBehaviour
         taskTimeSlider.gameObject.SetActive(false);
     }
 
-    public void TestBomb()
+    public void TestThrowing()
     {
 
     }
@@ -101,6 +101,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         view.RPC("RPC_PlantBomb", RpcTarget.AllBuffered, (Vector2)bombPlacement.position, Quaternion.identity);
     }
+     
     public void FireWeapon()
     {
 
@@ -111,13 +112,13 @@ public class PlayerAttackController : MonoBehaviour
 
         if (PlayerInstantiator.Instance.controllerState == PlayerInstantiator.Controller.Joystick)
         {
-            lookDir = GetComponent<PlayerMovement>().aimJoystick.Direction.normalized;
-            weaponDirection = GetComponent<PlayerMovement>().GetShootingDirection(lookDir);
+            lookDir = JoystickLookingDiretion();
+            weaponDirection = GetComponent<PlayerMovement>().GetShootingDirection(JoystickLookingDiretion());
         }
         else if (PlayerInstantiator.Instance.controllerState == PlayerInstantiator.Controller.Keyboard)
         {
-            lookDir = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
-            weaponDirection = (lookDir.x > 0) ? 1 : -1;
+            lookDir = MouseLookingDiretion();
+            weaponDirection = (MouseLookingDiretion().x > 0) ? 1 : -1;
         }
         else
         {
@@ -125,19 +126,39 @@ public class PlayerAttackController : MonoBehaviour
             weaponDirection = 1;
         }
 
-        float angle = Mathf.Atan2(lookDir.y * weaponDirection, lookDir.x * weaponDirection) * Mathf.Rad2Deg;
         Vector2 spawnPos = firePoint.position;
-        rotation = Quaternion.Euler(rotation.x, rotation.y, angle);
+        rotation = Quaternion.Euler(rotation.x, rotation.y, WeaponShootingAngle(lookDir, weaponDirection));
+
 
         view.RPC("RPC_Shoot", RpcTarget.AllBuffered, weaponDirection, spawnPos, rotation, firePoint.right);
 
     }
 
+
+
+    //Get Shooting Angle
+    public float WeaponShootingAngle(Vector2 lookDir, int weaponDirection)
+    {
+        return Mathf.Atan2(lookDir.y * weaponDirection, lookDir.x * weaponDirection) * Mathf.Rad2Deg;
+    }
+    public Vector2 MouseLookingDiretion()
+    {
+        return (Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).normalized;
+    }
+    public Vector2 JoystickLookingDiretion()
+    {
+        return GetComponent<PlayerMovement>().aimJoystick.Direction.normalized;
+    }
+
+
+    //Shooting
     public void Shoot()
     {
-        if (IsRiffleShooting())
-        AttackAction.Invoke();
+        if (IsRiffleShooting()|| IsThrowingWeapon())
+            AttackAction.Invoke();
     }
+
+    //Reloading
     private void Reload()
     {
         if (Input.GetKeyDown(KeyCode.R))
@@ -149,8 +170,15 @@ public class PlayerAttackController : MonoBehaviour
     }
 
 
+    //Check Throwing
+    public bool IsThrowingWeapon()
+    {
+        if (Input.GetMouseButtonDown(0))
+            return true;
+        else return false;
+    }
 
-
+    //Check Shooting
     public bool IsRiffleShooting()
     {
         switch (PlayerInstantiator.Instance.controllerState)
@@ -174,6 +202,23 @@ public class PlayerAttackController : MonoBehaviour
             default:
                 return false;
         }
+    }
+
+
+    //Throw Weapon
+
+    public void ThrowWeapon()
+    {
+
+        if (Physics2D.Raycast(Vector2.zero, Camera.main.ScreenToWorldPoint(Input.mousePosition), Mathf.Infinity, UILayerMask))
+            return;
+        
+
+        Vector2 spawnPos = firePoint.position;
+
+        float torqueSpeed = 5f;
+        view.RPC("RPC_ThrowWeapon", RpcTarget.AllBuffered, spawnPos, rotation, firePoint.right, torqueSpeed);
+
     }
 
 
@@ -207,7 +252,26 @@ public class PlayerAttackController : MonoBehaviour
 
 
     }
+    [PunRPC]
+    public void RPC_ThrowWeapon(Vector2 spawnPos, Quaternion rotation, Vector3 right, float torqueSpeed)
+    {
 
+        GameObject projectile = Instantiate(weapon.GetComponent<WeaponUnit>().bulletPrefab, spawnPos, rotation);
+        projectile.GetComponent<Bullet>().myOwner = view;
+        projectile.GetComponent<Bullet>().weapon = weapon;
+        float initialScale = projectile.transform.localScale.x;
+        float spriteScale = (transform.localScale.x > 0) ? Mathf.Abs(initialScale) : -initialScale;
+        projectile.transform.localScale = new Vector2(spriteScale, projectile.transform.localScale.y);
+        projectile.transform.localRotation = rotation;
+
+        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
+        //Add force to the projectile
+        rb.gravityScale = 1;
+        rb.velocity = right * fireableWeapon.Speed;
+        rb.AddTorque(torqueSpeed, ForceMode2D.Force);
+
+        //Detach Weapon from container
+    }
 
     #endregion
 

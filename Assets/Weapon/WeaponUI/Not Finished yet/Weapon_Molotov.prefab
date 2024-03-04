@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ba23bc7dabcd5e342a50aa57c482e496, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 091a272f85b2b1540ba866fad4c25485, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1928510353301048353}
   - component: {fileID: 1928510353301048352}
   - component: {fileID: 1928510353301048355}
-  - component: {fileID: 1928510353301048367}
+  - component: {fileID: 5544956621551003571}
   m_Layer: 5
   m_Name: Weapon_Molotov
   m_TagString: Untagged
@@ -212,11 +212,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d23f5a72fdc6c64b844c6b4a250b5cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 102326, guid: 4ac3c3c16d5e56741bf51d5499abb214, type: 3}
-  weaponUnit: 1
+  bulletPrefab: {fileID: 547432498002861260, guid: 07569dca642aebd4181b9c99898a39ee, type: 3}
+  weaponUnit: 6
   weaponIcon: {fileID: 0}
   isSelected: 0
---- !u!114 &1928510353301048367
+--- !u!114 &5544956621551003571
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,16 +225,36 @@ MonoBehaviour:
   m_GameObject: {fileID: 1928510353301048356}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21de8d73b38e8804892532bc2894cd9e, type: 3}
+  m_Script: {fileID: 11500000, guid: ba8a6db36e29555488028a2d52609b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Laser
-  m_Damage: 5
-  m_Accuracy: 100
-  m_Speed: 10
-  m_ReloadTime: 2
-  m_FireRate: 7
-  m_MaxCapacity: 45
-  m_Capacity: 45
+  m_Damage: 0
+  m_ElapseDuration: 0
+  m_TimeToExecute: 0
+  m_Speed: 0
   m_isFiring: 0
   m_CurrentAmmo: 0
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  beanLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  cam: {fileID: 0}
+  head: {fileID: 0}
+  container: {fileID: 0}
+  checkPoint: {fileID: 0}
+  checkRadius: 0
+  headRotSpeed: 0
+  speed: 0
+  timeToJumpApex: 0
+  jumpHeight: 0
+  shootForce: 0
+  torqueSpeed: 0
+  pointPrefab: {fileID: 0}
+  points: []
+  pointsContainer: {fileID: 0}
+  numberOfPoints: 0

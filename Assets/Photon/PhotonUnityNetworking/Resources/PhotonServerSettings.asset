@@ -54,6 +54,7 @@ MonoBehaviour:
   - RPC_InitializeTimer
   - RPC_Gameover
   - RPC_PlantBomb
+  - RPC_ThrowWeapon
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

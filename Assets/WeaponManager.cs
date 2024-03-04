@@ -64,7 +64,7 @@ public class WeaponManager : MonoBehaviour
 
         attackController.AttackAction = null;
         attackController.ReloadAction = null;
-        attackController.AttackAction += currentWeapon.weaponClient.Shoot;
+        attackController.AttackAction += currentWeapon.weaponClient.Execute;
         attackController.ReloadAction += currentWeapon.weaponClient.Reload;
         attackController.weapon = currentWeapon.GetComponent<Weapon>();
         switch (currentWeapon.weaponUnit)
