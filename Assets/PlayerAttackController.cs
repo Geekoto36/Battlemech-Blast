@@ -19,6 +19,7 @@ public class PlayerAttackController : MonoBehaviour
 
 
     public IFireable fireableWeapon;
+    public IThrowable throwableWeapon;
     public IExplodeable explodableWeapon;
     public Weapon weapon;
     public GameObject bullet;
@@ -101,7 +102,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         view.RPC("RPC_PlantBomb", RpcTarget.AllBuffered, (Vector2)bombPlacement.position, Quaternion.identity);
     }
-     
+
     public void FireWeapon()
     {
 
@@ -154,7 +155,7 @@ public class PlayerAttackController : MonoBehaviour
     //Shooting
     public void Shoot()
     {
-        if (IsRiffleShooting()|| IsThrowingWeapon())
+        if (IsRiffleShooting() || IsThrowingWeapon())
             AttackAction.Invoke();
     }
 
@@ -212,12 +213,29 @@ public class PlayerAttackController : MonoBehaviour
 
         if (Physics2D.Raycast(Vector2.zero, Camera.main.ScreenToWorldPoint(Input.mousePosition), Mathf.Infinity, UILayerMask))
             return;
-        
+        Vector2 lookDir;
+        int weaponDirection;
+
+        if (PlayerInstantiator.Instance.controllerState == PlayerInstantiator.Controller.Joystick)
+        {
+            lookDir = JoystickLookingDiretion();
+            weaponDirection = GetComponent<PlayerMovement>().GetShootingDirection(JoystickLookingDiretion());
+        }
+        else if (PlayerInstantiator.Instance.controllerState == PlayerInstantiator.Controller.Keyboard)
+        {
+            lookDir = MouseLookingDiretion();
+            weaponDirection = (MouseLookingDiretion().x > 0) ? 1 : -1;
+        }
+        else
+        {
+            lookDir = Vector2.zero;
+            weaponDirection = 1;
+        }
 
         Vector2 spawnPos = firePoint.position;
 
-        float torqueSpeed = 5f;
-        view.RPC("RPC_ThrowWeapon", RpcTarget.AllBuffered, spawnPos, rotation, firePoint.right, torqueSpeed);
+
+        view.RPC("RPC_ThrowWeapon", RpcTarget.AllBuffered, weaponDirection, spawnPos, firePoint.right, throwableWeapon.TorqueSpeed, throwableWeapon.ShootForce);
 
     }
 
@@ -252,13 +270,15 @@ public class PlayerAttackController : MonoBehaviour
 
 
     }
-    [PunRPC]
-    public void RPC_ThrowWeapon(Vector2 spawnPos, Quaternion rotation, Vector3 right, float torqueSpeed)
-    {
 
+    [PunRPC]
+    public void RPC_ThrowWeapon(int dir, Vector2 spawnPos, Vector3 right, float torqueSpeed, float shootForce)
+    {
+        Quaternion rotation = weapon.GetComponent<WeaponUnit>().bulletPrefab.transform.rotation;
         GameObject projectile = Instantiate(weapon.GetComponent<WeaponUnit>().bulletPrefab, spawnPos, rotation);
-        projectile.GetComponent<Bullet>().myOwner = view;
-        projectile.GetComponent<Bullet>().weapon = weapon;
+        ThrowableWeapon throwWeapon = projectile.GetComponent<ThrowableWeapon>();
+        throwWeapon.myOwner = view;
+
         float initialScale = projectile.transform.localScale.x;
         float spriteScale = (transform.localScale.x > 0) ? Mathf.Abs(initialScale) : -initialScale;
         projectile.transform.localScale = new Vector2(spriteScale, projectile.transform.localScale.y);
@@ -266,12 +286,13 @@ public class PlayerAttackController : MonoBehaviour
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         //Add force to the projectile
-        rb.gravityScale = 1;
-        rb.velocity = right * fireableWeapon.Speed;
-        rb.AddTorque(torqueSpeed, ForceMode2D.Force);
+        rb.gravityScale = 0;
+        projectile.GetComponent<ThrowableWeapon>().ProjctileMovement(Camera.main.ScreenToWorldPoint(Input.mousePosition), spawnPos, true);
 
         //Detach Weapon from container
     }
+
+
 
     #endregion
 

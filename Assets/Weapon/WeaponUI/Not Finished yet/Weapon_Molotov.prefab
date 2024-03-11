@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1928510353301048357}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -111,7 +110,6 @@ RectTransform:
   m_Children:
   - {fileID: 1928510352535655819}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -228,33 +226,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba8a6db36e29555488028a2d52609b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Damage: 0
+  weaponName: 
+  m_CurrentAmmo: 1
+  m_Radius: 4
+  m_Damage: 40
+  m_DamageInterval: 3
   m_ElapseDuration: 0
   m_TimeToExecute: 0
-  m_Speed: 0
+  m_TimeToDie: 5
+  m_ShootForce: 2
+  m_TorqueSpeed: 2
   m_isFiring: 0
-  m_CurrentAmmo: 0
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  beanLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  cam: {fileID: 0}
-  head: {fileID: 0}
-  container: {fileID: 0}
-  checkPoint: {fileID: 0}
-  checkRadius: 0
-  headRotSpeed: 0
-  speed: 0
-  timeToJumpApex: 0
-  jumpHeight: 0
-  shootForce: 0
-  torqueSpeed: 0
-  pointPrefab: {fileID: 0}
-  points: []
-  pointsContainer: {fileID: 0}
-  numberOfPoints: 0

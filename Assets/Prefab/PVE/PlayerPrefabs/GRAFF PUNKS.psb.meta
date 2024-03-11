@@ -21,11 +21,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -88,7 +90,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
@@ -112,7 +113,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 873}
     spritePosition: {x: 277, y: 370}
   - name: Board
@@ -134,7 +134,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 298, y: 732}
     spritePosition: {x: 280, y: 371}
   - name: 17 (1)
@@ -156,7 +155,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 165, y: 635}
     spritePosition: {x: 260, y: 392}
   - name: graff punks
@@ -178,7 +176,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 165, y: 524}
     spritePosition: {x: 231, y: 180}
   - name: mini gun
@@ -200,7 +197,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 524}
     spritePosition: {x: 31, y: 254}
   - name: Not Gundam
@@ -222,7 +218,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 48, y: 157}
   - name: rockets
@@ -244,7 +239,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 701}
     spritePosition: {x: 411, y: 270}
   - name: Rockets
@@ -266,7 +260,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 371}
     spritePosition: {x: 50, y: 454}
   - name: Chasis
@@ -288,7 +281,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 465, y: 4}
     spritePosition: {x: 40, y: 132}
   - name: foot
@@ -310,7 +302,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 165, y: 818}
     spritePosition: {x: 371, y: 18}
   - name: joint
@@ -332,7 +323,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 353, y: 910}
     spritePosition: {x: 378, y: 127}
   - name: leg
@@ -354,7 +344,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 298, y: 635}
     spritePosition: {x: 403, y: 67}
   - name: foot_1
@@ -376,7 +365,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 165, y: 910}
     spritePosition: {x: 17, y: 1}
   - name: joint_1
@@ -398,7 +386,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 353, y: 818}
     spritePosition: {x: 15, y: 96}
   - name: leg_1
@@ -420,7 +407,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 465, y: 139}
     spritePosition: {x: 45, y: 53}
   characterData:
@@ -428,6 +414,7 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -435,6 +422,7 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   platformSettings: []
   mosaicLayers: 1
@@ -447,6 +435,8 @@ ScriptedImporter:
   paperDollMode: 0
   keepDupilcateSpriteName: 0
   skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -2055,6 +2045,9 @@ ScriptedImporter:
     isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: GRAFF PUNKS Texture
   prefabAssetName: GRAFF PUNKS Prefab

@@ -24,11 +24,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -91,7 +93,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
@@ -2479,7 +2480,6 @@ ScriptedImporter:
     - {x: 114, y: 113}
     - {x: 0, y: 114}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 2894, y: 2972}
     spritePosition: {x: 1919, y: 2472}
   - name: Pendant
@@ -5134,7 +5134,6 @@ ScriptedImporter:
     - {x: 213, y: 212}
     - {x: 0, y: 213}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 5466}
     spritePosition: {x: 1648, y: 1248}
   - name: Board
@@ -6473,7 +6472,6 @@ ScriptedImporter:
     - {x: 97, y: 96}
     - {x: 0, y: 97}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 3066, y: 3914}
     spritePosition: {x: 1943, y: 2483}
   - name: Canyon
@@ -8758,7 +8756,6 @@ ScriptedImporter:
     - {x: 194, y: 193}
     - {x: 0, y: 194}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 1363, y: 4235}
     spritePosition: {x: 280, y: 1698}
   - name: chasis
@@ -11718,7 +11715,6 @@ ScriptedImporter:
     - {x: 258, y: 257}
     - {x: 0, y: 258}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 3372}
     spritePosition: {x: 339, y: 887}
   - name: character
@@ -14636,7 +14632,6 @@ ScriptedImporter:
     - {x: 255, y: 256}
     - {x: 256, y: 248}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 2528, y: 4235}
     spritePosition: {x: 1759, y: 2611}
   - name: Base
@@ -17462,7 +17457,6 @@ ScriptedImporter:
     - {x: 244, y: 243}
     - {x: 0, y: 244}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 395, y: 1054}
   - name: claw
@@ -20353,7 +20347,6 @@ ScriptedImporter:
     - {x: 249, y: 248}
     - {x: 0, y: 249}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 4235}
     spritePosition: {x: 2649, y: 1871}
   - name: rocket
@@ -23341,7 +23334,6 @@ ScriptedImporter:
     - {x: 248, y: 247}
     - {x: 248, y: 244}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 2406}
     spritePosition: {x: 408, y: 3038}
   - name: foot
@@ -25277,7 +25269,6 @@ ScriptedImporter:
     - {x: 154, y: 153}
     - {x: 0, y: 154}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 2894, y: 2406}
     spritePosition: {x: 2546, y: 126}
   - name: joint
@@ -26479,7 +26470,6 @@ ScriptedImporter:
     - {x: 100, y: 99}
     - {x: 0, y: 100}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 3066, y: 3372}
     spritePosition: {x: 2594, y: 859}
   - name: leg
@@ -27688,7 +27678,6 @@ ScriptedImporter:
     - {x: 98, y: 97}
     - {x: 0, y: 98}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 3438, y: 4777}
     spritePosition: {x: 2761, y: 451}
   - name: foot_1
@@ -29653,7 +29642,6 @@ ScriptedImporter:
     - {x: 153, y: 152}
     - {x: 0, y: 153}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 1437, y: 5466}
     spritePosition: {x: 190, y: 18}
   - name: joint_1
@@ -30855,7 +30843,6 @@ ScriptedImporter:
     - {x: 100, y: 99}
     - {x: 0, y: 100}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 3438, y: 4235}
     spritePosition: {x: 178, y: 651}
   - name: leg_1
@@ -32073,7 +32060,6 @@ ScriptedImporter:
     - {x: 97, y: 96}
     - {x: 0, y: 97}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 2643, y: 5466}
     spritePosition: {x: 373, y: 359}
   characterData:
@@ -32315,6 +32301,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -32322,6 +32309,7 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   platformSettings: []
   mosaicLayers: 1
@@ -32334,6 +32322,8 @@ ScriptedImporter:
   paperDollMode: 0
   keepDupilcateSpriteName: 0
   skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -32512,6 +32502,9 @@ ScriptedImporter:
     isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: MechsTemplateNP Texture
   prefabAssetName: MechsTemplateNP Prefab

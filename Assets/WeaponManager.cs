@@ -94,6 +94,11 @@ public class WeaponManager : MonoBehaviour
                 attackController.explodableWeapon= currentWeapon.GetComponent<IExplodeable>();
                 Debug.Log("Currently having a bomb");
                 break;
+            case WeaponUnit.WeaponType.Throwable:
+
+                attackController.throwableWeapon = currentWeapon.GetComponent<IThrowable>();
+                Debug.Log("Currently having a throwable weapon");
+                break;
             default:
                 attackController.AttackAction = null;
                 attackController.ReloadAction = null;

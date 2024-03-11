@@ -21,11 +21,13 @@ ScriptedImporter:
     convertToNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
+    swizzle: 50462976
     isReadable: 0
     streamingMipmaps: 1
     streamingMipmapsPriority: 0
     vTOnly: 0
-    ignoreMasterTextureLimit: 0
+    ignoreMipmapLimit: 0
     nPOTScale: 1
     sRGBTexture: 1
     spriteMode: 2
@@ -88,7 +90,6 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 0, y: 0}
     spritePosition: {x: 0, y: 0}
   mosaicSpriteImportData: []
@@ -1691,7 +1692,6 @@ ScriptedImporter:
     - {x: 69, y: 68}
     - {x: 0, y: 69}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 761, y: 140}
     spritePosition: {x: 277, y: 370}
   - name: Board
@@ -2581,7 +2581,6 @@ ScriptedImporter:
     - {x: 58, y: 57}
     - {x: 0, y: 58}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 308, y: 573}
     spritePosition: {x: 281, y: 371}
   - name: 18
@@ -4386,7 +4385,6 @@ ScriptedImporter:
     - {x: 153, y: 152}
     - {x: 0, y: 153}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 725}
     spritePosition: {x: 253, y: 391}
   - name: moon girls
@@ -6125,7 +6123,6 @@ ScriptedImporter:
     - {x: 127, y: 126}
     - {x: 0, y: 127}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 203, y: 371}
     spritePosition: {x: 231, y: 180}
   - name: Standard fist
@@ -7704,7 +7701,6 @@ ScriptedImporter:
     - {x: 127, y: 126}
     - {x: 0, y: 127}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 371}
     spritePosition: {x: 31, y: 255}
   - name: scorched earth
@@ -10520,7 +10516,6 @@ ScriptedImporter:
     - {x: 244, y: 243}
     - {x: 0, y: 244}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 4}
     spritePosition: {x: 48, y: 157}
   - name: lazer gun
@@ -11959,7 +11954,6 @@ ScriptedImporter:
     - {x: 117, y: 116}
     - {x: 0, y: 117}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 548}
     spritePosition: {x: 407, y: 268}
   - name: vents
@@ -13375,7 +13369,6 @@ ScriptedImporter:
     - {x: 113, y: 114}
     - {x: 59, y: 114}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 465, y: 140}
     spritePosition: {x: 116, y: 487}
   - name: Chasis
@@ -16200,7 +16193,6 @@ ScriptedImporter:
     - {x: 245, y: 244}
     - {x: 0, y: 245}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 465, y: 4}
     spritePosition: {x: 39, y: 131}
   - name: foot
@@ -17494,7 +17486,6 @@ ScriptedImporter:
     - {x: 92, y: 91}
     - {x: 0, y: 92}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 203, y: 482}
     spritePosition: {x: 370, y: 18}
   - name: joint
@@ -18256,7 +18247,6 @@ ScriptedImporter:
     - {x: 59, y: 60}
     - {x: 0, y: 60}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 914, y: 140}
     spritePosition: {x: 378, y: 127}
   - name: leg
@@ -19036,7 +19026,6 @@ ScriptedImporter:
     - {x: 58, y: 57}
     - {x: 0, y: 58}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 203, y: 661}
     spritePosition: {x: 403, y: 67}
   - name: foot_1
@@ -20381,7 +20370,6 @@ ScriptedImporter:
     - {x: 93, y: 92}
     - {x: 0, y: 93}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 4, y: 909}
     spritePosition: {x: 17, y: 1}
   - name: joint_1
@@ -21143,7 +21131,6 @@ ScriptedImporter:
     - {x: 60, y: 59}
     - {x: 0, y: 60}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 203, y: 573}
     spritePosition: {x: 15, y: 96}
   - name: leg_1
@@ -21934,7 +21921,6 @@ ScriptedImporter:
     - {x: 59, y: 58}
     - {x: 0, y: 59}
     tessellationDetail: 0
-    parentGroupIndex: -1
     uvTransform: {x: 932, y: 4}
     spritePosition: {x: 45, y: 52}
   characterData:
@@ -22176,6 +22162,7 @@ ScriptedImporter:
       order: 0
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   sharedRigSpriteImportData: []
   sharedRigCharacterData:
@@ -22183,6 +22170,7 @@ ScriptedImporter:
     parts: []
     dimension: {x: 0, y: 0}
     characterGroups: []
+    pivot: {x: 0, y: 0}
     boneReadOnly: 0
   platformSettings: []
   mosaicLayers: 1
@@ -22195,6 +22183,8 @@ ScriptedImporter:
   paperDollMode: 0
   keepDupilcateSpriteName: 0
   skeletonAssetReferenceID: 
+  padding: 4
+  spriteSizeExpand: 0
   spriteCategoryList:
     categories: []
   spritePackingTag: 
@@ -23803,6 +23793,9 @@ ScriptedImporter:
     isVisible: 1
   sharedRigPSDLayers: []
   pSDLayerImportSetting: []
+  importFileNodeState: 1
+  platformSettingsDirtyTick: 0
+  spriteSizeExpandChanged: 0
   generateGOHierarchy: 0
   textureAssetName: MOONGIRLS Texture
   prefabAssetName: MOONGIRLS Prefab
