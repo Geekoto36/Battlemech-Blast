@@ -131,9 +131,9 @@ public class Rocket : Fire, IWeapon, IFireable, IExplodeable
         base.ReloadAmmo(ref m_CurrentAmmo,ref m_Capacity, m_MaxCapacity);
     }
 
-    public void IncreaseAmmo()
+    public void IncreaseAmmo(int amount)
     {
-        AddAmmo(1, ref m_CurrentAmmo, ref m_Capacity, m_MaxCapacity);
+        AddAmmo(amount, ref m_CurrentAmmo, ref m_Capacity, m_MaxCapacity);
     }
     public void Reload()
     {

@@ -2415,7 +2415,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healEffect: {fileID: 4569046032541823318, guid: 448ffbcf71db27749b98c4ed68e15143, type: 3}
-  ammoEffect: {fileID: 3459634223649702073, guid: 29be575085277a24099ccac672da8541, type: 3}
+  spawnEffect: {fileID: 3459634223649702073, guid: 29be575085277a24099ccac672da8541, type: 3}
+  pickableObject: {fileID: 0}
+  weaponListContainer: {fileID: 5343677107211744006}
   checkRaduis: 0.53
 --- !u!114 &6331129669672937965
 MonoBehaviour:

@@ -51,7 +51,7 @@ public class PlayerTester : MonoBehaviour
     public Action AttackAction;
     public Action ReloadAction;
     private Quaternion rotation;
-    public Transform weaponTransform; 
+    public Transform weaponTransform;
     public GameObject bombPreviewGO;
     public Weapon weapon;
 
@@ -65,7 +65,7 @@ public class PlayerTester : MonoBehaviour
         animator = GetComponent<Animator>();
 
 
-        
+
 
 
         cursor.gameObject.SetActive(true);
@@ -74,6 +74,8 @@ public class PlayerTester : MonoBehaviour
         lastMovementDirection = 1;
         lastWeaponDirection = 1;
 
+
+
     }
 
     void Update()
@@ -81,11 +83,25 @@ public class PlayerTester : MonoBehaviour
 
 
         Shoot();
-
+        TestRadius();
 
     }
 
+
+    public float Radius = .5f;
     
+    void TestRadius()
+    {
+        for (int i = 0; i < 30; i++)
+        {
+            Vector2 next = transform.position;
+            float angle = Mathf.Atan2(next.y+Radius, transform.position.x + Radius);
+            angle *= i;
+            next = transform.position * angle;
+            Debug.DrawLine(transform.position, next, Color.red);
+        }
+    }
+
     private void Shoot()
     {
         if (AttackAction != null)

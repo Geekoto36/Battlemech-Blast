@@ -233,9 +233,8 @@ public class PlayerAttackController : MonoBehaviour
         }
 
         Vector2 spawnPos = firePoint.position;
-
-
-        view.RPC("RPC_ThrowWeapon", RpcTarget.AllBuffered, weaponDirection, spawnPos, firePoint.right, throwableWeapon.TorqueSpeed, throwableWeapon.ShootForce);
+        Vector2 endPoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        view.RPC("RPC_ThrowWeapon", RpcTarget.AllBuffered, spawnPos, endPoint, throwableWeapon.TorqueSpeed);
 
     }
 
@@ -272,7 +271,7 @@ public class PlayerAttackController : MonoBehaviour
     }
 
     [PunRPC]
-    public void RPC_ThrowWeapon(int dir, Vector2 spawnPos, Vector3 right, float torqueSpeed, float shootForce)
+    public void RPC_ThrowWeapon( Vector2 spawnPos, Vector2 endPoint, float torqueSpeed)
     {
         Quaternion rotation = weapon.GetComponent<WeaponUnit>().bulletPrefab.transform.rotation;
         GameObject projectile = Instantiate(weapon.GetComponent<WeaponUnit>().bulletPrefab, spawnPos, rotation);
@@ -286,8 +285,8 @@ public class PlayerAttackController : MonoBehaviour
 
         Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
         //Add force to the projectile
-        rb.gravityScale = 0;
-        projectile.GetComponent<ThrowableWeapon>().ProjctileMovement(Camera.main.ScreenToWorldPoint(Input.mousePosition), spawnPos, true);
+        //rb.gravityScale = 1f;
+        projectile.GetComponent<ThrowableWeapon>().ProjctileMovement(endPoint, rb);
 
         //Detach Weapon from container
     }

@@ -89,6 +89,10 @@ public class HealthSystem : MonoBehaviour
         if (this.currentHealth < this.maxHealth)
         {
             this.currentHealth += health;
+            if(this.currentHealth > this.maxHealth)
+            {
+                this.currentHealth = this.maxHealth;
+            }
             Debug.Log("You get " + health + " Added");
         }
         else

@@ -1,14 +1,32 @@
 using UnityEngine;
 
-public class PowerUps : MonoBehaviour
+public class PowerUps : MonoBehaviour, IPowerUp
 {
+
+    public enum PowerType
+    {
+        None,
+        Ammo,
+        Health,
+    }
+
+    public PowerType type;
+
+
+    [SerializeField] private int m_amount;
+    
+    private float checkRaduis = .5f;
+
+    public int Amount { get => m_amount; set => m_amount = value; }
+
+
+
     void Update()
     {
         CheckCollider();
     }
 
 
-    private float checkRaduis = .5f;
 
     void CheckCollider()
     {
@@ -27,4 +45,10 @@ public class PowerUps : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, checkRaduis);
     }
 
+}
+
+
+public interface IPowerUp
+{
+    public int Amount { get; set; }
 }

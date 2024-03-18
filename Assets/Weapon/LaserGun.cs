@@ -96,9 +96,9 @@ public class LaserGun : Fire, IWeapon, IFireable
     {
         base.AddAmmo(ammo, ref m_CurrentAmmo, ref m_Capacity, m_MaxCapacity);
     }
-    public void IncreaseAmmo()
+    public void IncreaseAmmo(int amount)
     {
-        AddAmmo(5, ref m_CurrentAmmo, ref m_Capacity, m_MaxCapacity);
+        AddAmmo(amount, ref m_CurrentAmmo, ref m_Capacity, m_MaxCapacity);
     }
     IEnumerator ReloadingCoroutine()
     {

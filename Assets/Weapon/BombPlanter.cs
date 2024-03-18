@@ -100,7 +100,7 @@ public class BombPlanter : Weapon, IWeapon
         Debug.Log("You can't reload");
     }
 
-    public void IncreaseAmmo()
+    public void IncreaseAmmo(int amount)
     {
         Debug.Log("You can't increase ammo");
 

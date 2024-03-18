@@ -8,6 +8,7 @@ public class ItemData : ScriptableObject
 
     public enum ItemType { 
         None,
+        Weapon,
         Gun,
         SpecialPower,
         Currency,
@@ -17,6 +18,7 @@ public class ItemData : ScriptableObject
     public ItemType type;
     public Sprite itemSprite;
     public Sprite itemIcon;
+    public GameObject pickUpObject;
     public int id;
     public string itemName;
     [TextArea]

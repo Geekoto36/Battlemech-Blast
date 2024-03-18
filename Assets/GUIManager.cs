@@ -54,7 +54,7 @@ public class GUIManager : MonoBehaviour
 
     void OnEnable()
     {
-        SetActivePanel(AuthPanel.name);
+        SetActivePanel(ModeSelectionPanel.name);
     }
     void Awake()
     {

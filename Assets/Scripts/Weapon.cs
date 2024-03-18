@@ -14,7 +14,7 @@ public interface IWeapon
 {
     public void Execute();
     public void Reload();
-    public void IncreaseAmmo();
+    public void IncreaseAmmo(int amount);
 }
 public interface IExplodeable
 {

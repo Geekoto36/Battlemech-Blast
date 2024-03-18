@@ -91,12 +91,12 @@ public class WeaponManager : MonoBehaviour
                 break;
             case WeaponUnit.WeaponType.Explosive:
 
-                attackController.explodableWeapon= currentWeapon.GetComponent<IExplodeable>();
+                attackController.explodableWeapon = currentWeapon.GetComponent<IExplodeable>();
                 Debug.Log("Currently having a bomb");
                 break;
             case WeaponUnit.WeaponType.Throwable:
 
-                attackController.throwableWeapon = currentWeapon.GetComponent<IThrowable>();
+                attackController.throwableWeapon = currentWeapon.bulletPrefab.GetComponent<IThrowable>();
                 Debug.Log("Currently having a throwable weapon");
                 break;
             default:

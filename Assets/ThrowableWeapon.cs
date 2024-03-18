@@ -1,21 +1,65 @@
 using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using UnityEngine;
 
-public class ThrowableWeapon : Throwable
+public class ThrowableWeapon : Throwable, IThrowable
 {
+    public int m_CurrentAmmo;
+    [SerializeField] protected float m_Radius;
+    [SerializeField] protected float m_Damage;
+    [SerializeField] protected float m_DamageInterval;
+    [SerializeField] protected float m_ElapseDuration;
+    [SerializeField] protected float m_TimeToExecute;
+    [SerializeField] protected float m_TimeToDie;
+    [SerializeField] protected float m_ShootForce;
+    [SerializeField] protected float m_TorqueSpeed;
+
+    [SerializeField] private bool m_isFiring;
+
+
+
+    #region Interface_Variables
+
+    public int CurrentAmmo { get => m_CurrentAmmo; }
+    public float Radius => m_Radius;
+    public float Damage => m_Damage;
+    public float DamageInterval => m_DamageInterval;
+    public float ElapseDuration => m_ElapseDuration;
+    public float TimeToExecute => m_TimeToExecute;
+    public float TimeToDie => m_TimeToDie;
+    public float ShootForce => m_ShootForce;
+    public float TorqueSpeed => m_TorqueSpeed;
+
+
+    #endregion
+
+    #region Components
+
+
+    [HideInInspector] public PhotonView myOwner;
+    Rigidbody2D rb;
+
+
+    #endregion
 
 
     private List<GameObject> colliders = new List<GameObject>();
-    [HideInInspector] public PhotonView myOwner;
 
     public GameObject collisionEffect;
     private bool isExecuted = false;
     private bool isShooted = false;
+    public bool debug = true;
+
+    Vector2 target;
+    public float gravity;
+    public float height;
+
 
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
 
     }
 
@@ -23,7 +67,9 @@ public class ThrowableWeapon : Throwable
     {
         CheckColliderBeforeExecute();
 
-        ProjctileMovement(target, origin, isShooted);
+        if (debug)
+            DrawPath();
+
     }
 
     private void ExecuteWeapon()
@@ -64,6 +110,7 @@ public class ThrowableWeapon : Throwable
     {
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(this.transform.position, Radius);
+        
         if (hits.Length <= 0)
             return;
 
@@ -105,45 +152,58 @@ public class ThrowableWeapon : Throwable
 
         hitObject.GetComponent<HealthSystem>().LoseHealth((int)Damage, myOwner);
     }
-
-    Vector2 target;
-    Vector2 origin;
-    public void ProjctileMovement(Vector2 targetPosition, Vector2 origin, bool isShooted)
+    public void ProjctileMovement(Vector2 targetPosition, Rigidbody2D rb)
     {
 
-        this.isShooted = isShooted;
+        target = new Vector2(targetPosition.x, targetPosition.y);
+        rb.gravityScale = 0f;
 
-        if (!this.isShooted)
-            return;
-
-        target = targetPosition;
-        this.origin = origin;
-        float dist = target.x - this.origin.x;
-
-        Vector2 nextX = Vector2.MoveTowards(transform.position, target, ShootForce * Time.deltaTime);
-        //float baseY = Mathf.Lerp(this.origin.y, target.y, (nextX - target.x) / dist);
-        float height = 2 * (nextX.x - this.origin.x) * (nextX.x - this.target.x) / (-0.5f * dist * dist);
-
-        Vector3 movePosition = new Vector3(nextX.x, nextX.y + 0, transform.position.z);
-
-        transform.position = movePosition;
+        Launch(rb);
 
     }
 
-    public Vector2 CalculateVelocity(Vector2 target, Vector2 origin, float t)
+    private void Launch(Rigidbody2D rb)
     {
-        Vector2 distance = target - origin;
-
-
-        float Sy = distance.y;
-        float Vy = Sy / t + 0.5f * Mathf.Abs(Physics2D.gravity.y) * t;
-
-        Vector2 result = Vector2.zero;
-
-        result.y = distance.y;
-
-        return result;
+        Physics2D.gravity = Vector2.up * gravity;
+        rb.gravityScale = 1f;
+        rb.velocity = CalculateLaunchData().initialVelocity;
     }
+    private LaunchData CalculateLaunchData()
+    {
+        float displacementY = target.y - transform.position.y;
+        Vector2 displacementXZ = new Vector2(target.x - transform.position.x, 0);
+        float time = Mathf.Sqrt(-2 * height / gravity) + Mathf.Sqrt(2 * (displacementY - height) / gravity);
+        Vector2 velocityY = Vector2.up * Mathf.Sqrt(-2 * gravity * height);
+        Vector2 velocityXZ = displacementXZ / time;
 
+        return new LaunchData(velocityXZ + velocityY * -Mathf.Sign(gravity), time);
+    }
+    private void DrawPath()
+    {
+        LaunchData launchData = CalculateLaunchData();
+        Vector2 previousDrawPoint = (Vector2)rb.position; //Initial throwing position
+
+        int resolution = 30;
+        for (int i = 1; i <= resolution; i++)
+        {
+            float simulationTime = i / (float)resolution * launchData.timeToTarget;
+            Vector2 displacement = launchData.initialVelocity * simulationTime + Vector2.up * gravity * simulationTime * simulationTime / 2f;
+            Vector2 drawPoint = (Vector2)transform.position + displacement;
+            Debug.DrawLine(previousDrawPoint, drawPoint, Color.green);
+            previousDrawPoint = drawPoint;
+        }
+    }
+    private struct LaunchData
+    {
+        public readonly Vector2 initialVelocity;
+        public readonly float timeToTarget;
+
+        public LaunchData(Vector2 initialVelocity, float timeToTarget)
+        {
+            this.initialVelocity = initialVelocity;
+            this.timeToTarget = timeToTarget;
+        }
+
+    }
 
 }

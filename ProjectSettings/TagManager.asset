@@ -15,6 +15,7 @@ TagManager:
   - DoorTrigger
   - Bound
   - Missile
+  - Pickable
   layers:
   - Default
   - TransparentFX
